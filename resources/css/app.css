@@ -1,0 +1,28 @@
+@tailwind base;
+
+@tailwind components;
+
+.button{
+    @apply text-white no-underline rounded-lg text-sm py-2 px-5 bg-gradient-to-r from-green-300 to-green-600 
+}
+body{
+    @apply bg-gray-900 text-gray-50
+}
+.navbar{
+    @apply h-auto flex justify-between
+}
+.logo{
+    @apply flex-none w-32 h-12 flex flex-wrap content-center justify-center ml-7
+}
+.menu{
+    @apply flex-none w-32 h-12 flex flex-wrap content-center justify-center mr-7
+}
+.container{
+    @apply p-3 
+}
+
+@tailwind utilities;
+
+*{
+    box-shadow: 0 0 0 1px #fff;
+}
