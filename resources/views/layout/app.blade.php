@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <input type="hidden" id="_token" value="{{ csrf_token() }}">
     <script src="{{ URL::asset('js/app.js') }}"></script>
     <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet"></link>
     <style>
@@ -16,11 +17,11 @@
     @include('layout.header')
     @yield('body')
     @yield('content')
-    <script type='text/javascript' id="__bs_script__">
+    <!-- <script type='text/javascript' id="__bs_script__">
         //<![CDATA[
         document.write("<script async src='/browser-sync/browser-sync-client.js'><\/script>".replace("HOST", location.hostname));
         //]]>
-    </script>
+    </script> -->
 </body>
 @include('layout.footer')
 </html>
