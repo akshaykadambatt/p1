@@ -6,7 +6,7 @@
     @apply text-white no-underline rounded-lg text-sm py-2 px-5 bg-gradient-to-r from-green-300 to-green-600
 }
 body{
-    @apply bg-gray-900 text-gray-50
+    @apply bg-gray-900 text-gray-50 font-light
 }
 .navbar{
     @apply h-auto flex justify-between
@@ -32,8 +32,46 @@ input{
 .navf-item{
     @apply flex flex-wrap content-around
 }
+
+.post{
+    @apply rounded-lg w-full p-2 px-5 my-5
+    /* box-shadow:0 0 20px 1px #ffffff1f; */
+}
+
+.post .user{
+    @apply h-12 flex
+}
+
+.post .user .user-inner{
+    @apply flex
+}
+
+.post .user .user-inner .avatar{
+    @apply mr-4 rounded-full h-11 w-11 
+}
+
+.post .user .avatar-sub-desc{
+    @apply text-xs
+}
+
+.post .user .avatar-desc{
+    @apply mt-0.5
+}
+
+.post .content{
+    @apply px-8 text-xl font-extralight
+}
+
+strong{
+    @apply font-light
+}
+
+.border-div{
+    @apply border border-white box-border border-gray-700
+}
+
 @tailwind utilities;
 
 *{
-    box-shadow: 0 0 0px 1px #ffffff1f;
+    box-shadow: 0 0 0px 1px #ffffff0f;
 }
