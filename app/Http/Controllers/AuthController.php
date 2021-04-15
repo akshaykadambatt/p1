@@ -17,14 +17,7 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $auth = Fortify::authenticateUsing(function ($request) {
-            $user = User::where('email', $request->email)->first();
-            if ($user &&
-                Hash::check($request->password, $user->password)) {
-                return $user;
-            }
-        });
-        return $auth;
+        dd('yo');
     }
     public function register(Request $request){
         return ((new CreateNewUser)->create($request->all()));

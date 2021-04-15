@@ -20,19 +20,7 @@
             @endauth
         </div>
     @endif
-        <form name="login" class="login" action="/login" name="loginForm" id="loginbtn">
-            @csrf
-            <input name="email" placeholder="handle"/>
-            <input name="password" type="text" placeholder="password"/>
-            <button name="login" class="button" type="submit">go</button>
-        </form>
-        <form class="register" name="registerForm" id="registerbtn">
-            <input name="name" placeholder="handle"/>
-            <input name="email" placeholder="handle"/>
-            <input name="password" type="password" placeholder="password"/>
-            <input name="password_confirmation" type="password" placeholder="password"/>
-            <button class="button" type="submit">go</button>
-        </form>
+        
 </div> 
     </body>
 </html>

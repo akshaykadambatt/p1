@@ -16,7 +16,10 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
-Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+
+Route::get('/home', function () {
+    return view('home/home');
+});

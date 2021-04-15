@@ -10,9 +10,15 @@ window.onload=function(){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             console.log(this.responseText);
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("loginbtn").outerHTML = 'L o g g e d  I n';
+                window.location = "/home";
+           }
         }
         xhttp.open("POST", "/login");
+        xhttp.setRequestHeader('Accept', 'application/json');
         xhttp.send(formData);
+
 
     });  
     document.getElementById("registerbtn").addEventListener("submit", e => {
