@@ -12,20 +12,20 @@ use App\Models\User;
 use App\Actions\Fortify\CreateNewUser;
 // use Laravel\Fortify\Http\Requests\LoginRequest;
 use App\Providers\FortifyServiceProvider;
+use Laravel\Fortify\Actions\AttemptToAuthenticate;
 class AuthController extends Controller
 {
-    
     public function login(Request $request)
     {
-        Fortify::authenticateUsing(function ($request) {
+        $auth = Fortify::authenticateUsing(function ($request) {
             $user = User::where('email', $request->email)->first();
             if ($user &&
                 Hash::check($request->password, $user->password)) {
                 return $user;
             }
         });
+        return $auth;
     }
-
     public function register(Request $request){
         return ((new CreateNewUser)->create($request->all()));
     }
