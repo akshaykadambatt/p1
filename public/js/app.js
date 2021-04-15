@@ -1897,6 +1897,7 @@ window.onload = function () {
     };
 
     xhttp.open("POST", "/register");
+    xhttp.setRequestHeader('Accept', 'application/json');
     xhttp.send(formData);
   });
 };

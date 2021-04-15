@@ -15,10 +15,6 @@ use App\Providers\FortifyServiceProvider;
 use Laravel\Fortify\Actions\AttemptToAuthenticate;
 class AuthController extends Controller
 {
-    public function login(Request $request)
-    {
-        dd('yo');
-    }
     public function register(Request $request){
         return ((new CreateNewUser)->create($request->all()));
     }

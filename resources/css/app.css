@@ -3,7 +3,7 @@
 @tailwind components;
 
 .button{
-    @apply text-white no-underline rounded-lg text-sm py-2 px-5 bg-gradient-to-r from-green-300 to-green-600 
+    @apply text-white no-underline rounded-lg text-sm py-2 px-5 bg-gradient-to-r from-green-300 to-green-600
 }
 body{
     @apply bg-gray-900 text-gray-50
@@ -21,8 +21,19 @@ body{
     @apply p-3 
 }
 
+input{
+    @apply text-gray-900
+}
+
+.navfooter{
+    @apply fixed bottom-0 left-0 w-screen flex-none w-32 h-12 flex flex-nowrap content-center justify-center mr-7 flex-row content-center justify-evenly items-stretch
+}
+
+.navf-item{
+    @apply flex flex-wrap content-around
+}
 @tailwind utilities;
 
 *{
-    box-shadow: 0 0 0 1px #fff;
+    box-shadow: 0 0 0px 1px #ffffff1f;
 }

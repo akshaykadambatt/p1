@@ -32,6 +32,7 @@ window.onload=function(){
             console.log(this.responseText);
         }
         xhttp.open("POST", "/register");
+        xhttp.setRequestHeader('Accept', 'application/json');
         xhttp.send(formData);
 
     });

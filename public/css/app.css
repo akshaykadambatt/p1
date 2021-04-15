@@ -641,6 +641,36 @@ body{
   padding: 0.75rem
 }
 
+input{
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity))
+}
+
+.navfooter{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  align-content: center;
+  align-content: center;
+  justify-content: center;
+  justify-content: space-evenly;
+  flex: none;
+  height: 3rem;
+  margin-right: 1.75rem;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 8rem;
+  width: 100vw
+}
+
+.navf-item{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around
+}
+
 .space-y-0 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
@@ -31888,7 +31918,7 @@ body{
 }
 
 *{
-  box-shadow: 0 0 0 1px #fff;
+  box-shadow: 0 0 0px 1px #ffffff1f;
 }
 
 @media (min-width: 640px) {
