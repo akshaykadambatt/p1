@@ -62,6 +62,13 @@ input{
     @apply px-8 text-xl font-extralight
 }
 
+.post .actions{
+    @apply  w-full flex-none w-32 h-10 flex flex-nowrap content-center justify-center mt-1.5 flex-row content-center justify-evenly items-stretch
+}
+
+.post .action-item {
+    @apply w-32
+}
 strong{
     @apply font-light
 }
