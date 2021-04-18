@@ -679,7 +679,9 @@ input{
   padding: 0.5rem;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-  width: 100%
+  width: 100%;
+  transition:all .03s;
+  /* box-shadow:0 0 20px 1px #ffffff1f; */
 }
 
 .post .user{

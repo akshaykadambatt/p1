@@ -34,7 +34,8 @@ input{
 }
 
 .post{
-    @apply rounded-lg w-full p-2 px-5 my-5
+    @apply rounded-lg w-full p-2 px-5 my-5;
+    transition:all .03s;
     /* box-shadow:0 0 20px 1px #ffffff1f; */
 }
 
