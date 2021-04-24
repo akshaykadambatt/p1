@@ -18,4 +18,9 @@ class HomeController extends Controller
         return Response::json($html);
         // return Response::json(['html' => $html]);
     }
+
+    public function storeTextPost(Request $request){
+        
+        return $request;
+    }
 }

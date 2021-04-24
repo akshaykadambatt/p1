@@ -56,7 +56,7 @@ window.postSubmit = (fdata)=>{
     xhttp.open("POST","/storeTextPost");
     xhttp.setRequestHeader('X-CSRF-TOKEN', document.getElementById('_token').value);
     xhttp.setRequestHeader('Accept','application/json');
-    xhttp.send();
+    xhttp.send(formData);
     xhttp.onload = (data) => {
         console.log(data.target); 
     }

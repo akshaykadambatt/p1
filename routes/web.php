@@ -23,3 +23,4 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::post('/getPosts', [HomeController::class, 'textPost']);
+Route::post('/storeTextPost', [HomeController::class, 'storeTextPost']);
