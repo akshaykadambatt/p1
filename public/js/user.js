@@ -1,14 +1,8 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./resources/js/user.js":
+var __webpack_exports__ = {};
 /*!******************************!*\
   !*** ./resources/js/user.js ***!
   \******************************/
-/***/ (function() {
-
-var _this = this;
-
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -34,23 +28,8 @@ window.onload = function () {
   };
 
   document.querySelector('#createPost').addEventListener('submit', function (e) {
-    var _console;
-
     e.preventDefault();
-    var formData = new FormData(e.target);
-    displaySpinner('.create-post .post-submit');
-
-    (_console = console).log.apply(_console, _toConsumableArray(formData));
-
-    xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/storeTextPost");
-    xhttp.setRequestHeader('X-CSRF-TOKEN', document.getElementById('_token').value);
-    xhttp.setRequestHeader('Accept', 'application/json');
-    xhttp.send();
-
-    xhttp.onload = function (data) {
-      console.log(data.target);
-    };
+    postSubmit(e.target);
   });
 };
 
@@ -78,9 +57,8 @@ window.showThis = function (next, e) {
   var nextName = '.container.' + e.target.dataset.name;
   var nextNavName = '.navfooter .' + e.target.dataset.name;
   var tabcurr = document.querySelector(currName);
-  var tabnex = document.querySelector(nextName);
-  console.log((-curr + next) * 100);
-  console.log(tabnex.style.transform);
+  var tabnex = document.querySelector(nextName); // console.log((-curr+next)*100);
+
   tabcurr.style.transform = "translatex(".concat((curr - next) * 100, "px)");
   tabcurr.style.transition = "all .1s";
   tabcurr.style.height = "0";
@@ -93,20 +71,23 @@ window.showThis = function (next, e) {
   tabnex.classList.add('active');
 };
 
-window.postSubmit = function () {
-  console.log(_this);
+window.postSubmit = function (fdata) {
+  var _console;
+
+  var formData = new FormData(fdata);
+  displaySpinner('.create-post .post-submit');
+
+  (_console = console).log.apply(_console, _toConsumableArray(formData));
+
+  xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "/storeTextPost");
+  xhttp.setRequestHeader('X-CSRF-TOKEN', document.getElementById('_token').value);
+  xhttp.setRequestHeader('Accept', 'application/json');
+  xhttp.send();
+
+  xhttp.onload = function (data) {
+    console.log(data.target);
+  };
 };
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./resources/js/user.js"]();
-/******/ 	
 /******/ })()
 ;

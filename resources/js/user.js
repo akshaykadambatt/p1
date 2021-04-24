@@ -10,28 +10,13 @@ window.onload = ()=>{
     };
     document.querySelector('#createPost').addEventListener('submit',(e)=>{
         e.preventDefault();
-        const formData = new FormData(e.target);
-        displaySpinner('.create-post .post-submit');
-        console.log(...formData);
-        xhttp = new XMLHttpRequest;
-        xhttp.open("POST","/storeTextPost");
-        xhttp.setRequestHeader('X-CSRF-TOKEN', document.getElementById('_token').value);
-        xhttp.setRequestHeader('Accept','application/json');
-        xhttp.send();
-        xhttp.onload = (data) => {
-            console.log(data.target); 
-        }
-
+        postSubmit(e.target);
     });
-    
 };
-
 function displaySpinner(el){
      document.querySelector(el+' .spinLoader').classList.add('spinLoader-visible');
      document.querySelector(el).classList.add('button-with-spinLoader');
-     
 }
-
 function populate(res){
     document.querySelector('.one').innerHTML+=JSON.parse(res);
     document.querySelector('.one').innerHTML+=JSON.parse(res);
@@ -43,7 +28,6 @@ function populate(res){
     document.querySelector('.one').innerHTML+=JSON.parse(res);
     document.querySelector('.one').innerHTML+=JSON.parse(res);
 }
-
 window.showThis = (next, e) => {
     var curr = parseInt(document.querySelector('.navfooter .active').dataset.order);
     var currName = '.container.'+document.querySelector('.navfooter .active').dataset.name;
@@ -52,9 +36,7 @@ window.showThis = (next, e) => {
     var nextNavName = '.navfooter .'+e.target.dataset.name;
     var tabcurr = document.querySelector(currName);
     var tabnex = document.querySelector(nextName);
-    
-    console.log((-curr+next)*100);
-    console.log(tabnex.style.transform);
+    // console.log((-curr+next)*100);
     tabcurr.style.transform = `translatex(${((curr-next)*100)}px)`;
     tabcurr.style.transition = `all .1s`;
     tabcurr.style.height = `0`;
@@ -66,7 +48,16 @@ window.showThis = (next, e) => {
     document.querySelector(nextNavName).classList.add('active');
     tabnex.classList.add('active');
 }
-
-window.postSubmit = ()=>{
-    console.log(this);
+window.postSubmit = (fdata)=>{
+    const formData = new FormData(fdata);
+    displaySpinner('.create-post .post-submit');
+    console.log(...formData);
+    xhttp = new XMLHttpRequest;
+    xhttp.open("POST","/storeTextPost");
+    xhttp.setRequestHeader('X-CSRF-TOKEN', document.getElementById('_token').value);
+    xhttp.setRequestHeader('Accept','application/json');
+    xhttp.send();
+    xhttp.onload = (data) => {
+        console.log(data.target); 
+    }
 }
