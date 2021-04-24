@@ -19,7 +19,7 @@ window.onload = ()=>{
         xhttp.setRequestHeader('Accept','application/json');
         xhttp.send();
         xhttp.onload = (data) => {
-            console.log(data.target);
+            console.log(data.target); 
         }
 
     });
