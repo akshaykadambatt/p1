@@ -1,20 +1,14 @@
 @extends("userlayout.app")
-@section('content')
-<div class="container">
+@section('content_home')
+
        <div class="post border-div"> Welcome @php print_r(Auth::user()->name); @endphp</div>
-    @include('userlayout.component-post')
-    @include('userlayout.component-post')
-    @include('userlayout.component-post')
-    @include('userlayout.component-post')
-    @include('userlayout.component-post')
-    @include('userlayout.component-post')
-    @include('userlayout.component-post')
-    @include('userlayout.component-post')
-    @include('userlayout.component-post')
-    @include('userlayout.component-post')
-    @include('userlayout.component-post')
-    @include('userlayout.navfooter')
-</div> 
-    </body>
-</html>
+    
+
+@include('userlayout.navfooter')
+ 
 @endsection
+@include('home.search')
+@include('home.plus')
+@include('home.star')
+@include('home.profile')
+@yield('home.content_2')

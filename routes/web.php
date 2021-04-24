@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/home', function () {
     return view('home/home');
 })->name('home');
+
+Route::post('/getPosts', [HomeController::class, 'textPost']);

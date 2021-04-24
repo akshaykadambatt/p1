@@ -15,8 +15,22 @@
 </head>
 <body>
     @include('userlayout.header')
-    @yield('body')
-    @yield('content')
+    <div class='all-wrapped-up'>
+    <div class="container one">
+        @yield('content_home')
+    </div> 
+    <div class="container two">
+        @yield('content_2')
+    </div> 
+    <div class="container three">
+        @yield('content_3')
+    </div> 
+    <div class="container four">
+        @yield('content_4')
+    </div> 
+    <div class="container five">
+        @yield('content_5')
+    </div></div>
     <!-- <script type='text/javascript' id="__bs_script__">
         //<![CDATA[
         document.write("<script async src='/browser-sync/browser-sync-client.js'><\/script>".replace("HOST", location.hostname));
@@ -26,17 +40,118 @@
 @endauth
 <script src="{{ URL::asset('js/app.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
-
 <script>
-var hammertime = new Hammer(document.querySelectorAll('body')[0]);
-hammertime.on('panleft panright', function (ev) {
+window.onload = () => {
+    param = 3;
+    xhttp = new XMLHttpRequest;
+    xhttp.open("POST",`/getPosts?id=${param}`);
+    xhttp.setRequestHeader('X-CSRF-TOKEN', document.getElementById('_token').value);
+    xhttp.setRequestHeader('Accept', 'application/json');
+    xhttp.send('"id": 3');
+    xhttp.onload = (data) => {
+        populate(data.target.response);
+    }
+function populate(res){
+    document.querySelector('.one').innerHTML+=JSON.parse(res);
+}
+
+}
+
+</script>
+<script>
+// var hammertime = new Hammer(document.querySelectorAll('.post')[1]);
+// hammertime.get('pan').set({ threshold: 60 });
+// //direction   : Hammer.DIRECTION_VERTICAL,
+// // FOR PANLEFT AND PANRIGHT
+// var initialX = 0;
+//       var deltaX = 0;
+//       var offset = initialX + deltaX;
+//       var lastScroll = 0;
+// hammertime.on('panleft panright', function (ev) {
+//     var now = +new Date;
+//   if (now - lastScroll > 60) { 
+//     var currentPosPre = document.querySelectorAll('.post')[1].style.transform.replace(/[^-0-9.]/g,'');
+//     var currentPos = (currentPosPre)? (currentPosPre):('0');
+//     console.log(parseFloat(currentPos) +parseFloat(ev.velocity)*95);
+//     document.querySelectorAll('.post')[1].style.transform = "translateX("+(parseFloat(currentPos) +parseFloat(ev.velocity)*55)+"px)";
+//     lastScroll = now;
+//     }});
+function isElementInViewport (el) {
+
+// Special bonus for those using jQuery
+if (typeof jQuery === "function" && el instanceof jQuery) {
+    el = el[0];
+}
+
+var rect = el.getBoundingClientRect();
+
+return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+);
+}
+var hammertime = new Hammer(document.querySelectorAll('.post')[1]);
+hammertime.get('pan').set({ direction   : Hammer.DIRECTION_VERTICAL,threshold: 60 });
+//
+// FOR PANLEFT AND PANRIGHT
+var nodes = document.querySelectorAll(".post");
+var activated;
+var initialX = 0;
+      var deltaX = 0;
+      var offset = initialX + deltaX;
+      var windowHeight = Math.round(window.innerHeight / (100 / 100));
+      var lastScroll = 0;var switcher = 1;
+hammertime.on('panup pandown', function (ev) {
+    var now = +new Date;
+  if (now - lastScroll > 10) { 
     var currentPosPre = document.querySelectorAll('.post')[1].style.transform.replace(/[^-0-9.]/g,'');
-	var currentPos = (currentPosPre)? (currentPosPre):('0');
-    var dir;
-    (ev.direction == 4)? (dir='+'):(dir='-');
-    console.log(((parseInt(currentPos))));
-    console.log((parseInt(dir+ev.distance)));
-    document.querySelectorAll('.post')[1].style.transform = "translateX("+((parseInt(currentPos))+parseInt(dir+ev.distance))+"px)";
-});
+    var currentPos = (currentPosPre)? (currentPosPre):('0');
+    if(isElementInViewport(document.querySelectorAll('.post')[1])){
+        document.querySelectorAll('.post')[1].id = 'active';
+        var target = document.getElementById("active");
+        activated = ([].indexOf.call(nodes, target));
+        console.log(activated);
+    }else{
+        nodes[activated].id = '';
+        nodes[activated+1].id = 'active';
+    }
+    document.querySelectorAll('.post')[1].style.transform = "translateY("+(parseFloat(currentPos) +parseFloat(ev.velocity)*55)+"px)";
+    if(( (parseFloat(currentPos) +parseFloat(ev.velocity)*95) % windowHeight > windowHeight/2 ) && switcher ==1 ){
+        console.log(parseFloat(currentPos) +parseFloat(ev.velocity)*95);switcher = 0;
+    document.querySelectorAll('.post')[1].style.transform = "translateY("+windowHeight+"px)";
+        
+    }else if(( (parseFloat(currentPos) +parseFloat(ev.velocity)*95) % windowHeight < -(windowHeight/1.4) ) && switcher ==0 ){
+        console.log(parseFloat(currentPos) +parseFloat(ev.velocity)*95);switcher = 01;
+    document.querySelectorAll('.post')[1].style.transform = "translateY("+-windowHeight+"px)";
+        }else if(( (parseFloat(currentPos) +parseFloat(ev.velocity)*95) % windowHeight < -(windowHeight/1.4) ) ){
+        console.log(parseFloat(currentPos) +parseFloat(ev.velocity)*95);switcher = 01;
+    document.querySelectorAll('.post')[1].style.transform = "translateY("+-windowHeight+"px)";
+        }
+    lastScroll = now;
+    }});
+
+
+//     var initialX = 0;
+//       var deltaX = 0;
+//       var offset = initialX + deltaX;
+//       var lastScroll = 0;
+//       var windowHeight = Math.round(window.innerHeight / (100 / 100));
+//       var switcher = 1;
+// hammertime.on('panup pandown', function (ev) {
+//     var now = +new Date;
+//     if (now - lastScroll > 10) { 
+//     if(( (window.pageYOffset -parseFloat(ev.overallVelocityY)*55) % windowHeight > windowHeight/3 ) && switcher ==1 ){
+//         console.log( window.pageYOffset );
+//         window.scroll(1, (window.pageYOffset -parseFloat(ev.overallVelocityY)*255));
+//         switcher == 0;
+//     }else if(( (window.pageYOffset -parseFloat(ev.overallVelocityY)*55) % windowHeight < windowHeight/2 ) && switcher ==0 ){
+//         switcher == 1;
+//     }
+//     window.scroll(1, (window.pageYOffset -parseFloat(ev.overallVelocityY)*25));
+//     lastScroll = now;
+//     }
+//     });
 </script>
 </html>

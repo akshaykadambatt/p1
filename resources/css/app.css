@@ -35,7 +35,7 @@ input{
 
 .post{
     @apply rounded-lg w-full p-2 px-5 my-5;
-    transition:all .03s;
+    transition:all .1s;
     /* box-shadow:0 0 20px 1px #ffffff1f; */
 }
 
@@ -78,8 +78,41 @@ strong{
     @apply border border-white box-border border-gray-700
 }
 
+.create-post .post-heading{
+    @apply text-4xl font-extralight
+}
+
+.create-post .post-submit{
+    @apply rounded-full inline-block py-2 px-8 font-light;
+    outline:none;
+}
+
+.create-post .post-box textarea{
+    @apply w-full text-2xl font-extralight bg-transparent rounded-lg my-4 p-3;
+    height:57vh;
+}
+
+.button-feedback{
+    @apply transition-shadow duration-150;
+    box-shadow:0 0 0px 0px rgb(255 255 255 / 3%);
+}
+
+.button-feedback:active{
+    @apply bg-gray-800;
+    box-shadow:0 0 22px 22px rgb(255 255 255 / 3%);
+}
+
+/* .all-wrapped-up{
+    @apply flex ;
+    width:500vw;
+} */
 @tailwind utilities;
 
 *{
-    box-shadow: 0 0 0px 1px #ffffff0f;
+    /* box-shadow: 0 0 0px 1px #ffffff0f; */
+}
+
+textarea,button,button:active{
+    outline:none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
