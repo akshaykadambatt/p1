@@ -1,6 +1,6 @@
 @section('content_2')
-<div class="container">
-       <div class="post border-div"> Welcome @php print_r(Auth::user()->name); @endphp</div>
+<div class="container maintabs two">
+       <div class="post border-div"> Search </div>
 </div> 
     </body>
 </html>

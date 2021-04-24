@@ -1,11 +1,8 @@
 @extends("userlayout.app")
 @section('content_home')
-
-       <div class="post border-div"> Welcome @php print_r(Auth::user()->name); @endphp</div>
-    
-
-@include('userlayout.navfooter')
- 
+<div class="container maintabs one active">
+    <div class="post border-div"> Welcome @php print_r(Auth::user()->name); @endphp</div>
+</div>
 @endsection
 @include('home.search')
 @include('home.plus')

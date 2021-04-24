@@ -18,8 +18,6 @@ window.onload=function(){
         xhttp.open("POST", "/login");
         xhttp.setRequestHeader('Accept', 'application/json');
         xhttp.send(formData);
-
-
     });  
     document.getElementById("registerbtn").addEventListener("submit", e => {
         e.preventDefault();
@@ -34,6 +32,5 @@ window.onload=function(){
         xhttp.open("POST", "/register");
         xhttp.setRequestHeader('Accept', 'application/json');
         xhttp.send(formData);
-
     });
 };

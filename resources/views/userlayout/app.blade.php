@@ -16,21 +16,14 @@
 <body>
     @include('userlayout.header')
     <div class='all-wrapped-up'>
-    <div class="container one">
         @yield('content_home')
-    </div> 
-    <div class="container two">
         @yield('content_2')
-    </div> 
-    <div class="container three">
         @yield('content_3')
-    </div> 
-    <div class="container four">
         @yield('content_4')
-    </div> 
-    <div class="container five">
         @yield('content_5')
-    </div></div>
+    </div>
+    @include('userlayout.navfooter')
+
     <!-- <script type='text/javascript' id="__bs_script__">
         //<![CDATA[
         document.write("<script async src='/browser-sync/browser-sync-client.js'><\/script>".replace("HOST", location.hostname));
@@ -38,26 +31,8 @@
     </script> -->
 </body>
 @endauth
-<script src="{{ URL::asset('js/app.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
-<script>
-window.onload = () => {
-    param = 3;
-    xhttp = new XMLHttpRequest;
-    xhttp.open("POST",`/getPosts?id=${param}`);
-    xhttp.setRequestHeader('X-CSRF-TOKEN', document.getElementById('_token').value);
-    xhttp.setRequestHeader('Accept', 'application/json');
-    xhttp.send('"id": 3');
-    xhttp.onload = (data) => {
-        populate(data.target.response);
-    }
-function populate(res){
-    document.querySelector('.one').innerHTML+=JSON.parse(res);
-}
 
-}
-
-</script>
 <script>
 // var hammertime = new Hammer(document.querySelectorAll('.post')[1]);
 // hammertime.get('pan').set({ threshold: 60 });
@@ -153,5 +128,8 @@ hammertime.on('panup pandown', function (ev) {
 //     lastScroll = now;
 //     }
 //     });
+
 </script>
+<script src="{{ URL::asset('js/user.js') }}"></script>
+
 </html>

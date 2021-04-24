@@ -5,8 +5,11 @@
 .button{
     @apply text-white no-underline rounded-lg text-sm py-2 px-5 bg-gradient-to-r from-green-300 to-green-600
 }
+html{
+    @apply overflow-x-hidden
+}
 body{
-    @apply bg-gray-900 text-gray-50 font-light
+    @apply bg-gray-900 text-gray-50 font-light overflow-x-hidden
 }
 .navbar{
     @apply h-auto flex justify-between
@@ -18,7 +21,16 @@ body{
     @apply flex-none w-32 h-12 flex flex-wrap content-center justify-center mr-7
 }
 .container{
-    @apply p-3 
+    @apply p-0
+}
+
+.maintabs{
+    @apply opacity-0 overflow-hidden px-3 h-0;
+    z-index: -2;transition:all .31s;top:8vh;
+}
+
+.maintabs.active{
+    @apply z-0 opacity-100  h-auto;
 }
 
 input{
@@ -26,11 +38,17 @@ input{
 }
 
 .navfooter{
-    @apply fixed bottom-0 left-0 w-screen flex-none w-32 h-12 flex flex-nowrap content-center justify-center mr-7 flex-row content-center justify-evenly items-stretch
+    @apply fixed bottom-0 overflow-hidden left-0 w-screen flex-none w-32 h-12 flex flex-nowrap content-center justify-center mr-7 flex-row content-center justify-evenly items-stretch
 }
 
 .navf-item{
-    @apply flex flex-wrap content-around
+    @apply flex flex-wrap content-around;
+    transition:all .1s;
+}
+
+.navf-item.active{
+    @apply px-5;
+    box-shadow: 0 0 0px 7px #ffffff14;
 }
 
 .post{
@@ -78,13 +96,29 @@ strong{
     @apply border border-white box-border border-gray-700
 }
 
+.create-post{
+    @apply py-2 my-5
+}
 .create-post .post-heading{
     @apply text-4xl font-extralight
 }
 
 .create-post .post-submit{
-    @apply rounded-full inline-block py-2 px-8 font-light;
-    outline:none;
+    @apply rounded-full inline-block py-2 px-8 font-light flex items-center;
+    outline:none;transition:all .521s;
+}
+
+.spinLoader{
+    @apply transform-gpu scale-0 mr-1.5 w-0;
+    transition:all .21s;
+}
+
+.spinLoader-visible{
+    @apply transform-gpu scale-100 w-auto;
+}
+
+.create-post .post-submit.button-with-spinLoader{
+    @apply pr-4 pl-2.5
 }
 
 .create-post .post-box textarea{
@@ -109,7 +143,7 @@ strong{
 @tailwind utilities;
 
 *{
-    /* box-shadow: 0 0 0px 1px #ffffff0f; */
+    box-shadow: 0 0 0px 1px #ffffff0f;
 }
 
 textarea,button,button:active{
