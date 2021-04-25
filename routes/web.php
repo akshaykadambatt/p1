@@ -22,5 +22,6 @@ Route::get('/home', function () {
     return view('home/home');
 })->name('home');
 
-Route::post('/getPosts', [HomeController::class, 'textPost']);
+Route::post('/getPosts', [HomeController::class, 'getPosts']);
+Route::post('/getNewPosts', [HomeController::class, 'getNewPosts']);
 Route::post('/storeTextPost', [HomeController::class, 'storeTextPost']);

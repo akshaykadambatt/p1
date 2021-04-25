@@ -23,10 +23,13 @@ body{
 .container{
     @apply p-0
 }
-
+.post.new {
+    animation: new-post-anim .5s none .5s 1 normal;
+}
 .maintabs{
-    @apply opacity-0 overflow-hidden px-3 h-0;
-    z-index: -2;transition:all .31s;top:8vh;
+    @apply opacity-0 overflow-hidden px-3 h-0 box-border;
+    z-index: -2;transition:all .31s;top:8vh; transition-timing-function: cubic-bezier(0, 1.05, 0.18, 0.99) !important;
+    /* cubic-bezier(0, 0.93, 0.56, 0.99) */
 }
 
 .maintabs.active{
@@ -38,17 +41,19 @@ input{
 }
 
 .navfooter{
-    @apply fixed bottom-0 overflow-hidden left-0 w-screen flex-none w-32 h-12 flex flex-nowrap content-center justify-center mr-7 flex-row content-center justify-evenly items-stretch
+    @apply fixed bottom-0 overflow-hidden left-0 w-screen flex-none w-32 h-12 flex flex-nowrap content-center justify-center mr-7 flex-row content-center justify-evenly items-stretch;
+    background: linear-gradient( 356deg, #000417b3 24%, #00061e00 );
+    backdrop-filter: blur(4px);box-shadow: 0 0 20px 5px #00000040;
 }
 
 .navf-item{
     @apply flex flex-wrap content-around;
-    transition:all .1s;
+    transition:padding .21s,background-color .2s;
 }
 
 .navf-item.active{
     @apply px-5;
-    box-shadow: 0 0 0px 7px #ffffff14;
+    background-color: #0018ff78;
 }
 
 .post{
@@ -78,22 +83,26 @@ input{
 }
 
 .post .content{
-    @apply px-8 text-xl font-extralight
+    @apply px-8 text-xl font-extralight break-words pt-2
 }
 
 .post .actions{
     @apply  w-full flex-none w-32 h-10 flex flex-nowrap content-center justify-center mt-1.5 flex-row content-center justify-evenly items-stretch
 }
 
+.material-icons{
+    color: #bdb6ff;
+}
+
 .post .action-item {
-    @apply w-32
+    @apply w-32 flex flex-col flex-wrap content-center justify-center
 }
 strong{
     @apply font-light
 }
 
 .border-div{
-    @apply border border-white box-border border-gray-700
+    @apply border border-white box-border border-gray-700 pb-0
 }
 
 .create-post{
@@ -114,7 +123,8 @@ strong{
 }
 
 .spinLoader-visible{
-    @apply transform-gpu scale-100 w-auto;
+    @apply transform-gpu scale-100;
+    width:29px;
 }
 
 .create-post .post-submit.button-with-spinLoader{
@@ -143,10 +153,25 @@ strong{
 @tailwind utilities;
 
 *{
-    box-shadow: 0 0 0px 1px #ffffff0f;
+    /* box-shadow: 0 0 0px 1px #ffffff0f; */
 }
 
 textarea,button,button:active{
     outline:none;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+@keyframes new-post-anim {
+    0%{
+        background: rgba(255, 255, 255, 0.0);
+        box-shadow: 0 0 0 1px transparent,0 0 0 0px #ffffff0a,0 0 0 0px #ffffff0a;
+    }
+    40%{
+        background: rgba(255, 255, 255, 0.061);
+        box-shadow: 0 0 0 1px #ffffff80,0 0 0 5px #ffffff1c,0 0 0 8px #ffffff10;
+    }
+    100%{
+        background: rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0px 1px transparent,0 0 0 15px transparent,0 0 0 30px transparent;
+    }
 }

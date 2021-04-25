@@ -10,15 +10,15 @@
             @endauth
         <form name="login" class="login" action="/login" name="loginForm" id="loginbtn">
             @csrf
-            <input name="email" placeholder="handle"/>
-            <input name="password" type="text" placeholder="password"/>
+            <input name="email" placeholder="handle" autocomplete = "username"/>
+            <input name="password" type="text" placeholder="password" autocomplete="current-password"/>
             <button name="login" class="button" type="submit">go</button>
         </form>
         <form class="register" name="registerForm" id="registerbtn">
             <input name="name" placeholder="name"/>
-            <input name="email" placeholder="handle"/>
-            <input name="password" type="password" placeholder="password"/>
-            <input name="password_confirmation" type="password" placeholder="password"/>
+            <input name="email" placeholder="handle" autocomplete="username"/>
+            <input name="password" type="password" placeholder="password" autocomplete="new-password"/>
+            <input name="password_confirmation" type="password" placeholder="password" autocomplete="new-password"/>
             <button class="button" type="submit">go</button>
         </form>
 </div> 

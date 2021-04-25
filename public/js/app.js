@@ -1871,7 +1871,7 @@ window.onload = function () {
       console.log(this.responseText);
 
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("loginbtn").outerHTML = 'L o g g e d  I n';
+        document.getElementById("loginbtn").outerHTML = 'login successfull... redirecting to your profile';
         window.location = "/home";
       }
     };
