@@ -5,21 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Action extends Model
 {
     use HasFactory;
-    protected $table = 'posts';
-    protected $casts = [
-        'properties' => 'array'
-    ];
-    
+    protected $table = 'actions';
+
     public function user()
     {
         return $this->belongsTo(\App\Models\User::class);
     }
 
-    public function action()
+    public function post()
     {
-        return $this->hasMany(\App\Models\Action::class);
+        return $this->belongsTo(\App\Models\Post::class);
     }
+
 }

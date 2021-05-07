@@ -25,3 +25,4 @@ Route::get('/home', function () {
 Route::post('/getPosts', [HomeController::class, 'getPosts']);
 Route::post('/getNewPosts', [HomeController::class, 'getNewPosts']);
 Route::post('/storeTextPost', [HomeController::class, 'storeTextPost']);
+Route::post('/postAction', [HomeController::class, 'postAction']);

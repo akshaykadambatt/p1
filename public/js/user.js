@@ -50,7 +50,14 @@ function hideSpinner(el) {
 }
 
 function populate(res) {
-  document.querySelector('.one').insertAdjacentHTML('afterbegin', res); // document.querySelector('.one').prepend(res);
+  document.querySelector('.one').insertAdjacentHTML('beforeend', res); // document.querySelector('.one').prepend(res);
+
+  var last = document.querySelectorAll('.one .post');
+  last[last.length - 1].style.marginBottom = '70px';
+}
+
+function populateAtTop(res) {
+  document.querySelector('.user-wall-head').insertAdjacentHTML('afterend', res); // document.querySelector('.one').prepend(res);
 
   var last = document.querySelectorAll('.one .post');
   last[last.length - 1].style.marginBottom = '70px';
@@ -67,11 +74,15 @@ function checkForNewPosts() {
 
   xhttp.onload = function (data) {
     console.log(data.target.response);
-    populate(data.target.response);
+    populateAtTop(data.target.response);
   };
 }
 
 window.showThis = function (next, e) {
+  // history.pushState( { 
+  //     plate_id: 1, 
+  //     plate: "Burger" 
+  //   }, null, "/"+e.target.dataset.name);
   var curr = parseInt(document.querySelector('.navfooter .active').dataset.order);
   var currName = '.container.' + document.querySelector('.navfooter .active').dataset.name;
   var currNavName = '.navfooter .' + document.querySelector('.navfooter .active').dataset.name;
@@ -114,6 +125,27 @@ window.postSubmit = function (fdata) {
       checkForNewPosts();
     }, 1000);
   };
+};
+
+window.action = function (action, e) {
+  elToUpdate = e.currentTarget;
+  fetch("/postAction", {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-TOKEN": document.getElementById('_token').value
+    },
+    body: JSON.stringify({
+      post: e.currentTarget.parentNode.dataset.id,
+      action: action
+    })
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    console.log(data);
+    elToUpdate.parentNode.querySelector('.like-count').innerText = data.like;
+    elToUpdate.parentNode.querySelector('.dislike-count').innerText = data.dislike;
+  });
 };
 /******/ })()
 ;
