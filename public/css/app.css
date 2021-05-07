@@ -774,7 +774,8 @@ input{
   height: 2.5rem;
   margin-top: 0.375rem;
   width: 8rem;
-  width: 100%
+  width: 100%;
+  margin-bottom: 7px;
 }
 
 .material-icons{
@@ -788,7 +789,14 @@ input{
   align-items: center;
   align-content: center;
   justify-content: space-around;
-  width: 8rem
+  width: 8rem;
+  background: #33333345;
+  margin: 0 3px;
+  border-radius: 5px;
+}
+
+.post .action-item.activated {
+  background: #0017f354;
 }
 
 strong{

@@ -88,7 +88,8 @@ input{
 }
 
 .post .actions{
-    @apply  w-full flex-none w-32 h-10 flex flex-nowrap content-center justify-center mt-1.5 flex-row content-center justify-evenly items-stretch
+    @apply  w-full flex-none w-32 h-10 flex flex-nowrap content-center justify-center mt-1.5 flex-row content-center justify-evenly items-stretch;
+    margin-bottom: 7px;
 }
 
 .material-icons{
@@ -96,8 +97,16 @@ input{
 }
 
 .post .action-item {
-    @apply w-32 flex flex-row flex-wrap justify-around content-center items-center
+    @apply w-32 flex flex-row flex-wrap justify-around content-center items-center;
+    background: #33333345;
+    margin: 0 3px;
+    border-radius: 5px;
 }
+
+.post .action-item.activated {
+    background: #0017f354;
+}
+
 strong{
     @apply font-light
 }

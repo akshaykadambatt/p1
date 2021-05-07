@@ -145,6 +145,20 @@ window.action = function (action, e) {
     console.log(data);
     elToUpdate.parentNode.querySelector('.like-count').innerText = data.like;
     elToUpdate.parentNode.querySelector('.dislike-count').innerText = data.dislike;
+
+    if (data.liked == true) {
+      elToUpdate.classList.add("activated");
+      console.log(elToUpdate.parentNode.querySelector('.dislike-count').parentNode.classList.remove('activated'));
+    } else {
+      console.log(elToUpdate.parentNode.querySelector('.like-count').parentNode.classList.remove('activated'));
+    }
+
+    if (data.disliked == true) {
+      console.log(elToUpdate.parentNode.querySelector('.like-count').parentNode.classList.remove('activated'));
+      elToUpdate.classList.add("activated");
+    } else {
+      console.log(elToUpdate.parentNode.querySelector('.dislike-count').parentNode.classList.remove('activated'));
+    }
   });
 };
 /******/ })()
