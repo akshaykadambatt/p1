@@ -33,17 +33,9 @@ if($post->properties!=''){
 
         <!--<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="#fff" fill-rule="evenodd" clip-rule="evenodd"><path d="M23.245 4l-11.245 14.374-11.219-14.374-.781.619 12 15.381 12-15.391-.755-.609z"/></svg>-->
         <svg width="3.8436mm" height="2.363mm" version="1.1" viewBox="0 0 3.8436 2.363" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
- <metadata>
-  <rdf:RDF>
-   <cc:Work rdf:about="">
-    <dc:format>image/svg+xml</dc:format>
-    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:title/>
-   </cc:Work>
-  </rdf:RDF>
- </metadata>
+
  <g transform="translate(-1.5796 -2.2392)">
-  <path d="m1.7112 4.4706 1.7903-2.0998 1.7903 2.0998v0" fill="none" stroke="#60ffff" stroke-dashoffset="7.8" stroke-linecap="round" stroke-linejoin="round" stroke-width=".26312" style="paint-order:markers fill stroke"/>
+  <path d="m1.7112 4.4706 1.7903-2.0998 1.7903 2.0998v0" fill="none" stroke="#ffffff" stroke-dashoffset="7.8" stroke-linecap="round" stroke-linejoin="round" stroke-width=".26312" style="paint-order:markers fill stroke"/>
  </g>
 </svg>
 
@@ -54,17 +46,9 @@ if($post->properties!=''){
         <!--<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="#fff"  fill-rule="evenodd" clip-rule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg>-->
 
         <svg width="3.8436mm" height="2.363mm" version="1.1" viewBox="0 0 3.8436 2.363" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
- <metadata>
-  <rdf:RDF>
-   <cc:Work rdf:about="">
-    <dc:format>image/svg+xml</dc:format>
-    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:title/>
-   </cc:Work>
-  </rdf:RDF>
- </metadata>
+
  <g transform="translate(-1.5796 -2.2392)">
-  <path d="m1.7112 2.3707 1.7903 2.0998 1.7903-2.0998v0" fill="none" stroke="#60ffff" stroke-dashoffset="7.8" stroke-linecap="round" stroke-linejoin="round" stroke-width=".26312" style="paint-order:markers fill stroke"/>
+  <path d="m1.7112 2.3707 1.7903 2.0998 1.7903-2.0998v0" fill="none" stroke="#ffffff" stroke-dashoffset="7.8" stroke-linecap="round" stroke-linejoin="round" stroke-width=".26312" style="paint-order:markers fill stroke"/>
  </g>
 </svg>
  <span class="dislike-count"> {{$dislikes}} </span>

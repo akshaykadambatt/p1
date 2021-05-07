@@ -96,7 +96,7 @@ input{
 }
 
 .post .action-item {
-    @apply w-32 flex flex-col flex-wrap content-center justify-center
+    @apply w-32 flex flex-row flex-wrap justify-around content-center items-center
 }
 strong{
     @apply font-light
