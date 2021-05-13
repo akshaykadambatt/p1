@@ -16,6 +16,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 window.onload = function () {
+  loading();
   xhttp = new XMLHttpRequest();
   xhttp.open("POST", "/getPosts"); // xhttp.open("POST",`/getPosts?id=${param}`);
 
@@ -28,13 +29,14 @@ window.onload = function () {
     populate(data.target.response);
   };
 
+  stoploading();
   document.querySelector('#createPost').addEventListener('submit', function (e) {
     e.preventDefault();
     postSubmit(e.target);
   });
   setInterval(function () {
     checkForNewPosts();
-  }, 7000);
+  }, 1117000);
 };
 
 function displaySpinner(el) {
@@ -61,6 +63,25 @@ function populateAtTop(res) {
 
   var last = document.querySelectorAll('.one .post');
   last[last.length - 1].style.marginBottom = '70px';
+}
+
+var loadLock = 0;
+
+function loading() {
+  loadLock = 1;
+  document.querySelector('#navfooter-backdrop').classList.add('navfooter-backdrop');
+  setTimeout(function () {
+    loadLock = 0;
+  }, 3000);
+}
+
+function stoploading() {
+  var interval = setInterval(function () {
+    if (loadLock == 0) {
+      document.querySelector('#navfooter-backdrop').classList.remove('navfooter-backdrop');
+      clearInterval(interval);
+    }
+  }, 1000);
 }
 
 function checkForNewPosts() {
@@ -106,6 +127,7 @@ window.showThis = function (next, e) {
 window.postSubmit = function (fdata) {
   var _console;
 
+  loading();
   var formData = new FormData(fdata);
   displaySpinner('.create-post .post-submit');
 
@@ -123,6 +145,7 @@ window.postSubmit = function (fdata) {
     setTimeout(function () {
       document.querySelector('.navfooter .one').click();
       checkForNewPosts();
+      stoploading();
     }, 1000);
   };
 };
@@ -149,17 +172,31 @@ window.action = function (action, e) {
     if (data.liked == true) {
       elToUpdate.classList.add("activated");
       console.log(elToUpdate.parentNode.querySelector('.dislike-count').parentNode.classList.remove('activated'));
-    } else {
+    } else if (data.liked == false) {
       console.log(elToUpdate.parentNode.querySelector('.like-count').parentNode.classList.remove('activated'));
     }
 
     if (data.disliked == true) {
       console.log(elToUpdate.parentNode.querySelector('.like-count').parentNode.classList.remove('activated'));
       elToUpdate.classList.add("activated");
-    } else {
+    } else if (data.disliked == false) {
       console.log(elToUpdate.parentNode.querySelector('.dislike-count').parentNode.classList.remove('activated'));
     }
+
+    if (data.plussed == 1) {
+      elToUpdate.classList.add("activated");
+      console.log(elToUpdate.classList);
+    } else if (data.plussed == 0) {
+      elToUpdate.classList.remove("activated");
+    }
   });
+};
+
+window.openPost = function (action, e) {
+  console.log(action);
+  console.log(e.currentTarget.parentNode);
+  document.querySelector('.open-inner').classList.add('visible');
+  document.querySelector('.open-inner').style.zIndex = 1;
 };
 /******/ })()
 ;

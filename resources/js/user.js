@@ -1,4 +1,5 @@
 window.onload = ()=>{
+    loading();
     xhttp = new XMLHttpRequest;
     xhttp.open("POST",`/getPosts`);
     // xhttp.open("POST",`/getPosts?id=${param}`);
@@ -10,13 +11,14 @@ window.onload = ()=>{
     xhttp.onload = (data) => {
         populate(data.target.response);
     };
+    stoploading();
     document.querySelector('#createPost').addEventListener('submit',(e)=>{
         e.preventDefault();
         postSubmit(e.target);
     });
     setInterval(() => {
         checkForNewPosts();
-    }, 7000);
+    }, 1117000);
 };
 function displaySpinner(el){
      document.querySelector(el+' .spinLoader').classList.add('spinLoader-visible');
@@ -40,7 +42,23 @@ function populateAtTop(res){
     var last = document.querySelectorAll('.one .post');
     last[last.length-1].style.marginBottom ='70px';
 }
-
+var loadLock = 0;
+function loading(){
+    loadLock = 1;
+    document.querySelector('#navfooter-backdrop').classList.add('navfooter-backdrop');
+    setTimeout(() => {
+        loadLock = 0
+    }, 3000);
+}
+function stoploading(){
+    var interval = setInterval(() => {
+        if (loadLock == 0) {
+            document.querySelector('#navfooter-backdrop').classList.remove('navfooter-backdrop');
+            clearInterval(interval);
+        }
+    }, 1000);
+    
+}
 function checkForNewPosts(){
     xhttp = new XMLHttpRequest;
     xhttp.open("POST",`/getNewPosts`);
@@ -81,6 +99,7 @@ window.showThis = (next, e) => {
     tabnex.classList.add('active');
 }
 window.postSubmit = (fdata)=>{
+    loading();
     const formData = new FormData(fdata);
     displaySpinner('.create-post .post-submit');
     console.log(...formData);
@@ -95,8 +114,10 @@ window.postSubmit = (fdata)=>{
         setTimeout(() => {
             document.querySelector('.navfooter .one').click();
             checkForNewPosts();
+            stoploading();
         }, 1000);
     }
+    
 }
 
 window.action = (action,e) => {
@@ -116,16 +137,28 @@ window.action = (action,e) => {
         if(data.liked==true){
             elToUpdate.classList.add("activated");
             console.log(elToUpdate.parentNode.querySelector('.dislike-count').parentNode.classList.remove('activated'));
-        }else {
+        }else if(data.liked==false){
             console.log(elToUpdate.parentNode.querySelector('.like-count').parentNode.classList.remove('activated'));
-
         }
         if(data.disliked==true){
             console.log(elToUpdate.parentNode.querySelector('.like-count').parentNode.classList.remove('activated'));
             elToUpdate.classList.add("activated");
-        }else{
-
+        }else if(data.disliked==false){
             console.log(elToUpdate.parentNode.querySelector('.dislike-count').parentNode.classList.remove('activated'));
         }
+        if(data.plussed==1){
+            elToUpdate.classList.add("activated");
+            console.log(elToUpdate.classList);
+        }else if(data.plussed==0) {
+            elToUpdate.classList.remove("activated");
+        }
     });
+}
+
+window.openPost = (action,e) => {
+    console.log(action);
+    console.log(e.currentTarget.parentNode);
+    document.querySelector('.open-inner').classList.add('visible');
+    document.querySelector('.open-inner').style.zIndex= 1;
+
 }

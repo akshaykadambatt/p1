@@ -25,7 +25,10 @@ class HomeController extends Controller
 
     public function getPosts(Request $request)
     {
-        $posts = Post::with('user')->latest('created_at')->take($request->num)->get();
+        $posts = Post::with('user')->latest('created_at')->with(['action' => function($q){
+            $q->where('user_id', Auth::user()->id);
+        }])->take($request->num)->get();
+        
         $html='';
         $sentPosts = array();
         for ($i=0;$i<count($posts);$i++) {
@@ -91,6 +94,7 @@ class HomeController extends Controller
             $properties=[];
             $properties["dislike"]=0;
             $properties["like"]=0;
+            $properties["plus"]=0;
             Post::where('id', $request->post)->update(array('properties' => json_encode($properties)));
             $properties=Post::where('id', $request->post)->get('properties')[0]->properties;
         }
@@ -116,7 +120,20 @@ class HomeController extends Controller
             return $this->dislikePost($properties,$actionEntry, $request);
         } elseif ($request->action == 1 && $actionEntry->disliked == 1) {
             return $this->undislikePost($properties,$actionEntry, $request);
+        }elseif ($request->action == 2 && $actionEntry->plussed == 0) {
+            return $this->plusPost($properties,$actionEntry, $request,1);
+        }elseif ($request->action == 2 && $actionEntry->plussed == 1) {
+            return $this->plusPost($properties,$actionEntry, $request,0);
         }
+    }
+
+    public function plusPost($properties,$actionEntry, $request,$change){
+        $properties["plus"]=$change;
+        Post::where('id', $request->post)->update(array('properties' => json_encode($properties)));
+        Action::where('identifier', Auth::user()->id.$request->post)->update(array('plussed' => $change));
+        $properties["plussed"]=$change;
+        $properties["post_id"]=$request->post;
+        return $properties;
     }
 
     public function likePost($properties,$actionEntry, $request){

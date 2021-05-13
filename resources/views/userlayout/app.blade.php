@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 @auth
 <head>
+    <title>Tracenet</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,12 +17,12 @@
 <body>
     @include('userlayout.header')
     <div class='all-wrapped-up'>
-    
         @yield('content_home')
         @yield('content_2')
         @yield('content_3')
         @yield('content_4')
         @yield('content_5')
+        @yield('inner')
     </div>
     @include('userlayout.navfooter')
 

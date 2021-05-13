@@ -701,6 +701,14 @@ input{
   box-shadow: 0 0 20px 5px #00000040;
 }
 
+#navfooter-backdrop{
+  z-index: -1;
+}
+
+.navfooter.navfooter-backdrop{
+  animation: load .6s none .5s 100 alternate-reverse;
+}
+
 .navf-item{
   display: flex;
   flex-wrap: wrap;
@@ -783,6 +791,7 @@ input{
 }
 
 .post .action-item {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -792,7 +801,12 @@ input{
   width: 8rem;
   background: #33333345;
   margin: 0 3px;
+  transition: all .15s;
   border-radius: 5px;
+}
+
+.post .action-item:active {
+  transform:scale(0.9);
 }
 
 .post .action-item.activated {
@@ -898,6 +912,24 @@ strong{
   --tw-bg-opacity: 1;
   background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
   box-shadow:0 0 22px 22px rgb(255 255 255 / 3%);
+}
+
+.open-inner{
+  --tw-bg-opacity: 1;
+  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+  height: 100vh;
+  overflow: scroll;
+  position: absolute;
+  top: 0px;
+  z-index:-1;
+  opacity:0;
+  transform:translateY(100px);
+  transition:transform .3s, opacity .3s;
+}
+
+.open-inner.visible{
+  opacity:1;
+  transform:translateY(0px);
 }
 
 /* .all-wrapped-up{
@@ -32151,8 +32183,8 @@ strong{
   --tw-backdrop-sepia: sepia(100%);
 }
 
-*{
-  /* box-shadow: 0 0 0px 1px #ffffff0f; */
+{
+  box-shadow: 0 0 0px 1px #ffffff0f;
 }
 
 textarea,button,button:active{
@@ -32191,6 +32223,28 @@ textarea,button,button:active{
   100%{
     background: rgba(255, 255, 255, 0);
     box-shadow: 0 0 0px 1px transparent,0 0 0 15px transparent,0 0 0 30px transparent;
+  }
+}
+
+@-webkit-keyframes load{
+  0%{
+    background-color: #0014ff;
+    background-color: #007eff;
+  }
+
+  100%{
+    background-color: rgba(0, 0, 255, 0);
+  }
+}
+
+@keyframes load{
+  0%{
+    background-color: #0014ff;
+    background-color: #007eff;
+  }
+
+  100%{
+    background-color: rgba(0, 0, 255, 0);
   }
 }
 
