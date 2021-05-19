@@ -21,5 +21,4 @@
 @include('home.plus')
 @include('home.star')
 @include('home.profile')
-@include('home.inner')
 @yield('home.content_2')

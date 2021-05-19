@@ -20,6 +20,7 @@
         "webpack-livereload-plugin": "^1.2.0"
     },
     "dependencies": {
+        "hammerjs": "^2.0.8",
         "tailwindcss": "^2.1.1"
     }
 }

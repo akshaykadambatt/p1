@@ -34,6 +34,7 @@
 </body>
 @endauth
 <!-- <script defer async src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script> -->
+<script src="{{ URL::asset('js/user.js') }}"></script>
 
 <script>
 // var hammertime = new Hammer(document.querySelectorAll('.post')[1]);
@@ -132,6 +133,5 @@ hammertime.on('panup pandown', function (ev) {
 //     });
 
 </script>
-<script src="{{ URL::asset('js/user.js') }}"></script>
 
 </html>

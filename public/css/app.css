@@ -695,6 +695,7 @@ input{
   left: 0px;
   width: 8rem;
   width: 100vw;
+  z-index: 10;
   background: linear-gradient( 356deg, #000417b3 24%, #00061e00 );
   -webkit-backdrop-filter: blur(4px);
           backdrop-filter: blur(4px);
@@ -919,11 +920,13 @@ strong{
   background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
   height: 100vh;
   overflow: scroll;
-  position: absolute;
+  position: fixed;
   top: 0px;
+  width: 100vw;
   z-index:-1;
   opacity:0;
   transform:translateY(100px);
+  /* touch-action: none; */
   transition:transform .3s, opacity .3s;
 }
 
@@ -32185,6 +32188,7 @@ strong{
 
 {
   box-shadow: 0 0 0px 1px #ffffff0f;
+  outline: 1px solid rgba(255, 0, 0, 0.493);
 }
 
 textarea,button,button:active{

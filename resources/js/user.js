@@ -1,3 +1,5 @@
+window.Hammer = require('hammerjs/hammer.js'); 
+
 window.onload = ()=>{
     loading();
     xhttp = new XMLHttpRequest;
@@ -156,9 +158,47 @@ window.action = (action,e) => {
 }
 
 window.openPost = (action,e) => {
-    console.log(action);
+    if(sessionStorage.getItem("OpenPosts")){
+        sessionStorage.setItem("OpenPosts",parseInt(sessionStorage.getItem("OpenPosts"))+1);
+    }else{
+        sessionStorage.setItem("OpenPosts",1);
+    }
+    var currentPostClass = 'open-post-num-'+sessionStorage.getItem("OpenPosts");
     console.log(e.currentTarget.parentNode);
-    document.querySelector('.open-inner').classList.add('visible');
-    document.querySelector('.open-inner').style.zIndex= 1;
+    var openPost = document.createElement('div');
+    openPost.innerHTML  = `<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>`;
+    openPost.classList.add('container','open-inner',currentPostClass, 'visible');
+    document.querySelector('.all-wrapped-up').insertBefore(openPost, document.querySelector('.active'));
+    currentPostClass = document.querySelector('.'+currentPostClass);
+    currentPostClass.style.zIndex= 1;
+    // var prevScrollPos = 0;
+    var prevScrollPos = document.documentElement.scrollTop;
+    currentPostClass.addEventListener('touchmove',snapScroll,true);
+    currentPostClass.currentPostClass=currentPostClass;
+    currentPostClass.prevScrollPos=prevScrollPos;
+    setTimeout(() => {
+        currentPostClass.removeEventListener('touchmove',snapScroll,true);
+        console.log('in timeout');
+    }, 3000);
+   
+}
 
+function snapScroll(e){
+    var currentPostClass = e.currentTarget.currentPostClass;
+    var prevScrollPos = e.currentTarget.prevScrollPos;
+    console.log('in');
+    if(currentPostClass.scrollHeight - currentPostClass.offsetHeight == currentPostClass.scrollTop){
+        window.onscroll = function () {  document.documentElement.scrollTop=prevScrollPos; };
+        // currentPostClass.style.touchAction = 'none';
+        // if((prevScrollPos - ev.changedTouches[0].clientY) < -25){
+        //     console.log(prevScrollPos - ev.changedTouches[0].clientY);
+        //     console.log(document.documentElement.scrollTop);
+        // }
+        // prevScrollPos = ev.changedTouches[0].clientY;
+    }
+    // if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    //     console.log('bottom');
+    //     console.log(ev);
+    // }
 }

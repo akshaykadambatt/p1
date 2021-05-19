@@ -1,5 +1,4 @@
-require('./bootstrap');
-
+// require('./bootstrap');
 window.onload=function(){
     document.getElementById("loginbtn").addEventListener("submit", e => {
         e.preventDefault();
